@@ -32,6 +32,11 @@ const resolvers = {
 			return await newUser.save();
 		},
 
+		updateUser: async (root, args) => {
+			let { id, user } = args;
+			return User.findByIdAndUpdate(id, { ...user }, { new: true });
+		},
+
 		deleteUser: async (root, { id }) => {
 			return await User.findByIdAndDelete(id);
 		},
@@ -44,6 +49,11 @@ const resolvers = {
 			});
 
 			return await newCompany.save();
+		},
+
+		updateCompany: async (root, args) => {
+			let { id, company } = args;
+			return Company.findByIdAndUpdate(id, { ...company }, { new: true });
 		},
 
 		deleteCompany: async (root, { id }) => {

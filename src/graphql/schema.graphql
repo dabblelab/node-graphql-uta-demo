@@ -88,6 +88,14 @@ input UserInput {
 	company: String!
 }
 
+input UserUpdateInput {
+	name: String
+	email: String
+	phone: String
+	dob: String
+	company: String
+}
+
 input CompanyInput {
   name: String!
 	website: String!
@@ -95,10 +103,19 @@ input CompanyInput {
 	employeesCount: Int!
 }
 
+input CompanyUpdateInput {
+  name: String
+	website: String
+	address: String
+	employeesCount: Int
+}
+
 type Mutation {
   addUser( user: UserInput): User!
+  updateUser(id: ID!, user: UserUpdateInput): User!
   deleteUser( id: ID!): User
 
   addCompany( company: CompanyInput): Company!
+  updateCompany(id: ID!, company: CompanyUpdateInput): Company!
   deleteCompany( id: ID!): Company
 }
