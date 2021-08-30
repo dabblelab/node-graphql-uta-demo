@@ -15,10 +15,47 @@ type Company {
 	employeesCount: Int!
 }
 
+type CovidCountryInfo {
+  _id: Float
+  iso2: String
+  iso3: String
+  lat: Float
+  long: Float
+  flag: String
+}
+
+type CountriesCovidData {
+  updated: String
+  country: String
+  cases: Float
+  todayCases: Float
+  deaths: Float
+  todayDeaths: Float
+  recovered: Float
+  todayRecovered: Float
+  active: Float
+  critical: Float
+  casesPerOneMillion: Float
+  deathsPerOneMillion: Float
+  tests: Float
+  testsPerOneMillion: Float
+  population: Float
+  continent: String
+  oneCasePerPeople: Float
+  oneDeathPerPeople: Float
+  oneTestPerPeople: Float
+  activePerOneMillion: Float
+  recoveredPerOneMillion: Float
+  criticalPerOneMillion: Float
+  countryInfo: CovidCountryInfo
+}
+
 type Query {
   test: String!
   allUsers: [User!]!
   allCompanies: [Company!]!
+
+  getCovidDataOfCountry(country: String!): CountriesCovidData
 }
 
 input UserInput {

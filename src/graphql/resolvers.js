@@ -1,3 +1,4 @@
+const { default: axios } = require("axios");
 const mongoose = require("mongoose");
 const { User, Company } = require("../db/models");
 
@@ -6,6 +7,10 @@ const resolvers = {
 		test: () => `Hello world!!`,
 		allUsers: async () => await User.find({}),
 		allCompanies: async () => await Company.find({}),
+		getCovidDataOfCountry: async (root, { country }) => {
+			const result = await axios.get(`https://corona.lmao.ninja/v2/countries/${country}?yesterday=true&strict=true&query`);
+			return {...result.data, updated: `${result.data.updated}`}
+		}
 	},
 
 	Mutation: {
