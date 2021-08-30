@@ -7,10 +7,18 @@ const resolvers = {
 		test: () => `Hello world!!`,
 		allUsers: async () => await User.find({}),
 		allCompanies: async () => await Company.find({}),
+		getAllCovidData: async () => {
+			const result = await axios.get(
+				`https://corona.lmao.ninja/v2/continents?yesterday=true&sort`
+			);
+			return result.data;
+		},
 		getCovidDataOfCountry: async (root, { country }) => {
-			const result = await axios.get(`https://corona.lmao.ninja/v2/countries/${country}?yesterday=true&strict=true&query`);
-			return {...result.data, updated: `${result.data.updated}`}
-		}
+			const result = await axios.get(
+				`https://corona.lmao.ninja/v2/countries/${country}?yesterday=true&strict=true&query`
+			);
+			return result.data;
+		},
 	},
 
 	Mutation: {
@@ -18,29 +26,29 @@ const resolvers = {
 			const { user } = args;
 			const newUser = new User({
 				_id: new mongoose.Types.ObjectId(),
-				...user
+				...user,
 			});
 
 			return await newUser.save();
-    },
+		},
 
-    deleteUser: async (root, { id }) => {
-      return await User.findByIdAndDelete(id);
-    },
+		deleteUser: async (root, { id }) => {
+			return await User.findByIdAndDelete(id);
+		},
 
-    addCompany: async (root, args) => {
+		addCompany: async (root, args) => {
 			const { company } = args;
 			const newCompany = new Company({
 				_id: new mongoose.Types.ObjectId(),
-			  ...company
+				...company,
 			});
 
 			return await newCompany.save();
-    },
+		},
 
-    deleteCompany: async (root, { id }) => {
-      return await Company.findByIdAndDelete(id)
-    },
+		deleteCompany: async (root, { id }) => {
+			return await Company.findByIdAndDelete(id);
+		},
 	},
 };
 

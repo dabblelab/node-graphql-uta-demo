@@ -25,7 +25,7 @@ type CovidCountryInfo {
 }
 
 type CountriesCovidData {
-  updated: String
+  updated: Float
   country: String
   cases: Float
   todayCases: Float
@@ -50,11 +50,33 @@ type CountriesCovidData {
   countryInfo: CovidCountryInfo
 }
 
+type CountrtCovidAll { updated: Float
+  cases: Int
+  todayCases: Int
+  deaths: Int
+  todayDeaths: Int
+  recovered: Int
+  todayRecovered: Int
+  active: Int
+  critical: Int
+  casesPerOneMillion: Float
+  deathsPerOneMillion: Float
+  tests: Int
+  testsPerOneMillion: Float
+  population: Int
+  continent: String
+  activePerOneMillion: Float
+  recoveredPerOneMillion: Float
+  criticalPerOneMillion: Float
+  countries: [String ]
+  }
+
 type Query {
   test: String!
   allUsers: [User!]!
   allCompanies: [Company!]!
 
+  getAllCovidData: [CountrtCovidAll]
   getCovidDataOfCountry(country: String!): CountriesCovidData
 }
 
