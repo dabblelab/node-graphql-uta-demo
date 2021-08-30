@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
-export const userSchema = new Schema({
-	id: String,
+const userSchema = new Schema({
 	name: String,
 	email: String,
 	phone: String,
@@ -10,10 +9,14 @@ export const userSchema = new Schema({
 	company: String,
 });
 
-export const companySchema = new Schema({
-	id: String,
+const companySchema = new Schema({
 	name: String,
 	website: String,
-	adress: String,
+	address: String,
 	employeesCount: Number,
 });
+
+module.exports = {
+  userSchema,
+  companySchema
+}

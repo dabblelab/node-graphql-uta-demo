@@ -1,4 +1,45 @@
+type User {
+	id: ID!
+	name: String!
+	email: String!
+	phone: String!
+	dob: String!
+	company: String!
+}
+
+type Company {
+  id: ID!
+	name: String!
+	website: String!
+	address: String!
+	employeesCount: Int!
+}
 
 type Query {
   test: String!
+  allUsers: [User!]!
+  allCompanies: [Company!]!
+}
+
+input UserInput {
+	name: String!
+	email: String!
+	phone: String!
+	dob: String!
+	company: String!
+}
+
+input CompanyInput {
+  name: String!
+	website: String!
+	address: String!
+	employeesCount: Int!
+}
+
+type Mutation {
+  addUser( user: UserInput): User!
+  deleteUser( id: ID!): User
+
+  addCompany( company: CompanyInput): Company!
+  deleteCompany( id: ID!): Company
 }
