@@ -1,6 +1,6 @@
 
 const { ApolloServer } = require('apollo-server-express');
-const { ApolloServerPluginDrainHttpServer } = require('apollo-server-core');
+const { ApolloServerPluginDrainHttpServer,  ApolloServerPluginLandingPageGraphQLPlayground } = require('apollo-server-core');
 const express = require('express');
 const http = require('http')
 const fs = require('fs');
@@ -18,7 +18,7 @@ async function startApolloServer(typeDefs, resolvers) {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginDrainHttpServer({ httpServer })],
+    plugins: [ApolloServerPluginDrainHttpServer({ httpServer }), ApolloServerPluginLandingPageGraphQLPlayground()],
   });
 
   await connectToDB();
